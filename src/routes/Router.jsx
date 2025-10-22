@@ -1,7 +1,5 @@
 
 
-
-
 import { createBrowserRouter } from "react-router";
 import HomeLayout from "../layout/HomeLayout";
 import Home from "../pages/Home";
@@ -17,8 +15,10 @@ const router = createBrowserRouter(
         {
             path: "/auth",
             element: <Home></Home>,
-
-
+        },
+        {
+            path: "/game",
+            element: <MoreGame></MoreGame>
         },
         
         {
