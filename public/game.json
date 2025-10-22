@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "title": "Player Unknowns Battle Ground: PUBG",
+    "coverPhoto": "https://i.ibb.co.com/r25Zk7rj/image-1.webp",
+    "category": "FPS",
+    "downloadLink": "https://www.pubgmobile.com/en-US/home.shtml",
+    "description": "PUBG Mobile is a fast-paced battle royale game where players fight for survival, strategy, and victory on dynamic maps.",
+    "ratings": "4.5",
+    "developer": "Krafton"
+  },
+  {
+    "id": "2",
+    "title": "Call of Duty: Mobile",
+    "coverPhoto": "https://i.ibb.co.com/2YsDxJmf/image-2.jpg",
+    "category": "Action FPS",
+    "downloadLink": "https://www.callofduty.com/mobile",
+    "description": "Call of Duty Mobile brings console-quality FPS gameplay to your phone with multiple modes including Battle Royale and Multiplayer.",
+    "ratings": "4.6",
+    "developer": "Activision"
+  },
+  {
+    "id": "3",
+    "title": "Genshin Impact",
+    "coverPhoto": "https://i.ibb.co.com/gLxX83Fd/image-3.jpg",
+    "category": "Adventure RPG",
+    "downloadLink": "https://genshin.hoyoverse.com/",
+    "description": "Genshin Impact is an open-world action RPG where players explore the magical land of Teyvat, mastering elements and uncovering secrets.",
+    "ratings": "4.8",
+    "developer": "HoYoverse"
+  },
+  {
+    "id": "4",
+    "title": "Valorant",
+    "coverPhoto": "https://i.ibb.co.com/HTWCMK0d/image-4.jpg",
+    "category": "Tactical FPS",
+    "downloadLink": "https://playvalorant.com/",
+    "description": "Valorant is a competitive 5v5 tactical shooter combining precise gunplay with unique character abilities for intense team-based matches.",
+    "ratings": "4.7",
+    "developer": "Riot Games"
+  },
+  {
+    "id": "5",
+    "title": "Clash of Clans",
+    "coverPhoto": "https://i.ibb.co.com/35hzZxBR/image-5.jpg",
+    "category": "Strategy",
+    "downloadLink": "https://supercell.com/en/games/clashofclans/",
+    "description": "Clash of Clans lets players build villages, train armies, and raid others to rise as the strongest clan in a fantasy world.",
+    "ratings": "4.4",
+    "developer": "Supercell"
+  },
+  {
+    "id": "6",
+    "title": "Minecraft",
+    "coverPhoto": "https://i.ibb.co.com/ynbtZ02w/image-6.jpg",
+    "category": "Sandbox",
+    "downloadLink": "https://www.minecraft.net/",
+    "description": "Minecraft is a sandbox game where creativity has no limits — build, explore, and survive in a blocky open world full of possibilities.",
+    "ratings": "4.9",
+    "developer": "Mojang Studios"
+  }
+]

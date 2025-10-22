@@ -1,24 +1,32 @@
+
+
+
+
 import { createBrowserRouter } from "react-router";
 import HomeLayout from "../layout/HomeLayout";
 import Home from "../pages/Home";
+import MoreGame from "../pages/MoreGame";
 
 const router = createBrowserRouter(
     [
         {
-            path:"/",
+            path: "/",
+            loader: () => fetch("/game.json"),
             element: <HomeLayout></HomeLayout>,
         },
         {
-            path:"/auth",
+            path: "/auth",
             element: <Home></Home>,
-            
+
+
         },
+        
         {
-            path:"/banner",
+            path: "/banner",
             element: <h3>Banner layout</h3>,
         },
         {
-            path:"/*",
+            path: "/*",
             element: <h3>Error404</h3>,
         },
     ]
