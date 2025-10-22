@@ -1,30 +1,30 @@
-import React from 'react';
-import { Outlet } from 'react-router';
-import Navbar from '../components/Navbar';
-import Home from '../pages/Home';
-import Hero from '../pages/Hero';
+import React from "react";
+import { Outlet } from "react-router-dom"; 
+import Navbar from "../components/Navbar";
+import Home from "../pages/Home";
+import Hero from "../pages/Hero";
 
 const HomeLayout = () => {
     return (
         <div>
-            <header> 
-                <Navbar></Navbar>
+            <header>
+                <Navbar />
             </header>
-            <mine>
+            <main>
                 <section>
-                    <Home></Home>
-                    <Hero></Hero>
+                    <Home />
+                    <Hero />
                 </section>
                 <section>
-                    <Outlet></Outlet>
+                    <Outlet />
                 </section>
-
-                <section className='sidebare'> 
-
+                <section className="sidebar">
+                    
                 </section>
-            </mine>
+            </main>
         </div>
     );
 };
 
 export default HomeLayout;
+
