@@ -2,8 +2,8 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 
 const MoreGame = () => {
-    const games = useLoaderData() || []; // loader থেকে ডেটা নাও
-    console.log(games); // এটা চেক করো data আসছে কি না
+    const games = useLoaderData() || []; 
+    console.log(games); 
 
     return (
         <div className="container mx-auto px-4 my-10">
