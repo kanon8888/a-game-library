@@ -5,6 +5,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import logoImage from "../assets/logo.jpeg";
+import { Link } from "react-router";
 
 
 const navLinks = [
@@ -49,7 +50,7 @@ const Navbar = () => {
                     </ul>
                 </div>
 
-                {/* Logo */}
+
                 <div>
                     <img className="w-[90px] h-[90px] rounded-full" src={logoImage} alt="Logo" />
                 </div>
@@ -73,7 +74,9 @@ const Navbar = () => {
             </div>
 
             <div className="navbar-end">
-                <a className="btn">Login</a>
+                <Link to="/auth/login">
+                    <a className="btn">Login</a>
+                </Link>
             </div>
         </div>
     );

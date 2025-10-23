@@ -4,6 +4,9 @@ import Home from "../pages/Home";
 import Hero from "../pages/Hero";
 import MoreGame from "../pages/MoreGame";
 import GameDetails from "../pages/GameDetails";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import AuthLayout from "../layout/AuthLayout";
 
 const router = createBrowserRouter([
     {
@@ -35,6 +38,22 @@ const router = createBrowserRouter([
             { path: "/banner", element: <h3>Banner layout</h3> },
             { path: "/auth", element: <Home /> }
         ]
+    },
+    {
+        path:"/auth",
+        element: <AuthLayout></AuthLayout>,
+        children:[
+            {
+                path:'/auth/login',
+                element: <Login></Login>,
+            },
+            {
+                path:'/auth/register',
+                element: <Register></Register>,
+            },
+            
+        ]
+        
     },
     {
         path: "/*",
