@@ -7,61 +7,48 @@ import GameDetails from "../pages/GameDetails";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AuthLayout from "../layout/AuthLayout";
+import PrivateRoute from "../components/PrivateRoute";
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <HomeLayout />,
-        children: [
-            {
-                path: "/",
-                element: (
-                    <>
-                        <Home />
-                        <Hero />
-                    </>
-                ),
-                loader: () => fetch("/game.json").then(res => res.json())
-            },
-            {
-                path: "/games",
-                element: <MoreGame />,
-                loader: () => fetch("/games.json").then(res => res.json())
-            },
-            {
-                path: "/game/:id",
-                element: <GameDetails />,
-                loader: ({ params }) => fetch("/games.json")
-                    .then(res => res.json())
-                    .then(data => data.find(g => g.id === params.id))
-            },
-            { path: "/banner", element: <h3>Banner layout</h3> },
-            { path: "/auth", element: <Home /> }
-        ]
-    },
-    {
-        path:"/auth",
-        element: <AuthLayout></AuthLayout>,
-        children:[
-            {
-                path:'/auth/login',
-                element: <Login></Login>,
-            },
-            {
-                path:'/auth/register',
-                element: <Register></Register>,
-            },
-            
-        ]
-        
-    },
-    {
-        path: "/*",
-        element: <h3 className="text-center text-red-600 mt-10">Error 404: Page Not Found</h3>
-    }
+  {
+    path: "/",
+    element: <HomeLayout />,
+    children: [
+      { path: "/", element: <><Home /><Hero /></>, loader: () => fetch("/game.json").then(res => res.json()) },
+      { path: "/games", element: <MoreGame />, loader: () => fetch("/games.json").then(res => res.json()) },
+      { path: "/game/:id",
+        element: (
+          <PrivateRoute>
+            <GameDetails />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch("/games.json")
+            .then(res => res.json())
+            .then(data => data.find(g => g.id === params.id)),
+      },
+      { path: "/banner", element: <h3>Banner layout</h3> },
+    ],
+  },
+  {
+    path: "/auth",
+    element: <AuthLayout />,
+    children: [
+      { path: "/auth/login", element: <Login /> },
+      { path: "/auth/register", element: <Register /> },
+    ],
+  },
+  { path: "*", element: <h3 className="text-center text-red-600 mt-10">404 Page Not Found</h3> },
 ]);
 
 export default router;
+
+
+
+
+
+
+
 
 
 

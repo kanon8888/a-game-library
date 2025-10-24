@@ -1,5 +1,4 @@
 
-
 import React from "react";
 import { useLoaderData, Link } from "react-router-dom";
 
@@ -28,3 +27,7 @@ const GameDetails = () => {
 };
 
 export default GameDetails;
+
+
+
+

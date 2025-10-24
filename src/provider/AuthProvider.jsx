@@ -1,41 +1,37 @@
+import { createContext, useEffect, useState } from "react";
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    onAuthStateChanged,
+    signOut,
+    updateProfile,
+} from "firebase/auth";
+import { auth, googleProvider } from "../firebase/firebase.config";
 
-import React, { createContext, useEffect, useState } from "react";
-import app from "../firebase/firebase.config";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged } from "firebase/auth";
+export const AuthContext = createContext();
 
-
-export const AuthContext = createContext(null);
-
-const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
-
     const [user, setUser] = useState(null);
-    console.log(user);
 
-    const createUser = (email, password) => {
-
-        return createUserWithEmailAndPassword(auth, email, password)
-    };
+    const registerUser = (email, password) =>
+        createUserWithEmailAndPassword(auth, email, password);
+    const loginUser = (email, password) =>
+        signInWithEmailAndPassword(auth, email, password);
+    const googleLogin = () => signInWithPopup(auth, googleProvider);
+    const logOut = () => signOut(auth);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-
-            setUser(currentUser);
-
-        });
-        return () => {
-            unsubscribe();
-        }
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) =>
+            setUser(currentUser)
+        );
+        return () => unsubscribe();
     }, []);
 
-    const authData = {
-        user,
-        setUser,
-        createUser,
-    };
-
     return (
-        <AuthContext.Provider value={authData}>
+        <AuthContext.Provider
+            value={{ user, setUser, registerUser, loginUser, googleLogin, logOut }}
+        >
             {children}
         </AuthContext.Provider>
     );
@@ -45,23 +41,8 @@ export default AuthProvider;
 
 
 
-// import React, { createContext, useState } from "react";
 
-// export const AuthContext = createContext();
 
-// const AuthProvider = ({ children }) => {
-//     const [user, setUser] = useState({ null });
 
-//     const authData = {
-//         user,
-//         setUser,
-//     };
 
-//     return (
-//         <AuthContext.Provider value={authData}>
-//             {children}
-//         </AuthContext.Provider>
-//     );
-// };
 
-// export default AuthProvider;

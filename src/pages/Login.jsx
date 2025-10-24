@@ -1,26 +1,54 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-    return (
-        <div className='flex justify-center min-h-screen items-center'>
-            <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5">
-                <h2 className='font-semibold text-2xl text-center'>Login your account</h2>
-                <div className="card-body">
-                    <fieldset className="fieldset">
-                        <label className="label">Email</label>
-                        <input type="email" className="input" placeholder="Email" />
-                        <label className="label">Password</label>
-                        <input type="password" className="input" placeholder="Password" />
-                        <div><a className="link link-hover">Forgot password?</a></div>
-                        <button className="btn btn-neutral mt-4">Login</button>
-                        <p className='font-semibold text-center pt-5'>Dont't Have An Acconut ? <Link className='text-secondary' to='/auth/register'>Register</Link> </p>
+    const { loginUser, googleLogin } = useContext(AuthContext);
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
 
-                    </fieldset>
-                </div>
+    const handleLogin = (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        loginUser(email, password)
+            .then(() => navigate("/"))
+            .catch((err) => setError(err.message));
+    };
+
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(() => navigate("/"))
+            .catch((err) => setError(err.message));
+    };
+
+    return (
+        <div className="flex justify-center min-h-screen items-center">
+            <div className="card bg-base-100 w-full max-w-sm shadow-2xl py-5">
+                <h2 className="font-semibold text-2xl text-center mb-3">Login your account</h2>
+                <form onSubmit={handleLogin} className="card-body">
+                    <input name="email" type="email" placeholder="Email" className="input mb-2" required />
+                    <input name="password" type="password" placeholder="Password" className="input mb-2" required />
+                    <p className="text-red-500 mb-2">{error}</p>
+                    <button type="submit" className="btn btn-neutral w-full mb-2">Login</button>
+                    <button type="button" onClick={handleGoogleLogin} className="btn btn-outline w-full">
+                        Login with Google
+                    </button>
+                    <p className="text-center mt-4">
+                        Don't have an account? <Link to="/auth/register" className="text-blue-500">Register</Link>
+                    </p>
+                </form>
             </div>
         </div>
     );
 };
 
 export default Login;
+
+
+
+
+
+
+

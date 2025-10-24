@@ -1,56 +1,95 @@
-import React, { use } from 'react';
-import { Link } from 'react-router';
-import { AuthContext } from '../provider/AuthProvider';
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+import { Link, useNavigate } from "react-router-dom";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
-    const { createUser, setUser } = use(AuthContext);
+    const { registerUser, googleLogin } = useContext(AuthContext);
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
+
     const handleRegister = (e) => {
         e.preventDefault();
-        console.log(e.target);
-        const form = e.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const photoUrl = form.photoUrl.value;
-        const password = form.password.value;
-        console.log({ name, email, photoUrl, password });
-        createUser(email, password)
-            .then(result => {
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const photoURL = e.target.photoURL.value;
+        const password = e.target.password.value;
+
+        // Password validation
+        if (!/(?=.*[A-Z])/.test(password))
+            return setError("Password must contain at least 1 uppercase letter");
+        if (!/(?=.*[a-z])/.test(password))
+            return setError("Password must contain at least 1 lowercase letter");
+        if (password.length < 6)
+            return setError("Password must be at least 6 characters");
+
+        registerUser(email, password)
+            .then((result) => {
                 const user = result.user;
-                // console.log(user);
-                setUser(user)
+                updateProfile(user, { displayName: name, photoURL: photoURL });
+                navigate("/auth/login");
             })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                alert(errorMessage);
-                // ..
-            });
+            .catch((err) => setError(err.message));
+    };
 
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(() => navigate("/"))
+            .catch((err) => setError(err.message));
+    };
 
-    }
     return (
-        <div className='flex justify-center min-h-screen items-center'>
-            <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5">
-                <h2 className='font-semibold text-2xl text-center'>Register your account</h2>
+        <div className="flex justify-center min-h-screen items-center">
+            <div className="card bg-base-100 w-full max-w-sm shadow-2xl py-5">
+                <h2 className="font-semibold text-2xl text-center mb-3">
+                    Register your account
+                </h2>
                 <form onSubmit={handleRegister} className="card-body">
-                    <fieldset className="fieldset">
-                        {/* name  */}
-                        <label className="label">Name</label>
-                        <input name='name' type="text" className="input" placeholder="Name" required />
-                        {/* email  */}
-                        <label className="label">Email</label>
-                        <input name='email' type="email" className="input" placeholder="Email" required />
-                        {/* photoURL  */}
-                        <label className="label">PhotoURL</label>
-                        <input name='photoUrl' type="text" className="input" placeholder="PhotoURL" required />
-                        {/* password  */}
-                        <label className="label">Password</label>
-                        <input name='password' type="password" className="input" placeholder="Password" required />
-
-                        <button type='submit' className="btn btn-neutral mt-4">Register</button>
-                        <p className='font-semibold text-center pt-5'>Allready Have An Acconut ? <Link className='text-secondary' to='/auth/login'>Login</Link> </p>
-
-                    </fieldset>
+                    <input
+                        name="name"
+                        type="text"
+                        placeholder="Name"
+                        className="input mb-2"
+                        required
+                    />
+                    <input
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                        className="input mb-2"
+                        required
+                    />
+                    <input
+                        name="photoURL"
+                        type="text"
+                        placeholder="Photo URL"
+                        className="input mb-2"
+                        required
+                    />
+                    <input
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        className="input mb-2"
+                        required
+                    />
+                    <p className="text-red-500 mb-2">{error}</p>
+                    <button type="submit" className="btn btn-neutral w-full mb-2">
+                        Register
+                    </button>
+                    <button
+                        type="button"
+                        onClick={handleGoogleLogin}
+                        className="btn btn-outline w-full"
+                    >
+                        Register with Google
+                    </button>
+                    <p className="text-center mt-4">
+                        Already have an account?{" "}
+                        <Link to="/auth/login" className="text-blue-500">
+                            Login
+                        </Link>
+                    </p>
                 </form>
             </div>
         </div>
@@ -58,3 +97,10 @@ const Register = () => {
 };
 
 export default Register;
+
+
+
+
+
+
+
