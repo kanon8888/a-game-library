@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className="bg-gray-900 text-white py-8 mt-12">
             <div className="container mx-auto px-4 grid md:grid-cols-3 gap-6">
-                {/* About Section */}
+                
                 <div>
                     <h3 className="text-xl font-bold mb-3">GameHub</h3>
                     <p className="text-gray-400">
@@ -14,7 +14,7 @@ const Footer = () => {
                     </p>
                 </div>
 
-                {/* Links Section */}
+                
                 <div>
                     <h3 className="text-xl font-bold mb-3">Quick Links</h3>
                     <ul className="space-y-2">
@@ -41,7 +41,7 @@ const Footer = () => {
                     </ul>
                 </div>
 
-                {/* Social Media Section */}
+                
                 <div>
                     <h3 className="text-xl font-bold mb-3">Follow Us</h3>
                     <div className="flex gap-4">
