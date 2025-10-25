@@ -1,16 +1,56 @@
-# React + Vite
+# 🎮 GameHub – A Game Library Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+GameHub is a game exploration web application where users can browse games, see details, and access protected content after authentication. It includes a complete login and registration system with a beautiful and responsive UI.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+> Replace these with your actual links ✅  
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Key Features
 
-## Expanding the ESLint configuration
+| Feature | Status |
+|--------|:-----:|
+| Firebase Authentication | ✅ |
+| Email & Password Login | ✅ |
+| Google Login | ✅ |
+| Register with Name + PhotoURL | ✅ |
+| Password Validation | ✅ |
+| Protected Routes (Private Pages) | ✅ |
+| Conditional Rendering based on Login State | ✅ |
+| Logout System | ✅ |
+| Responsive UI Design | ✅ |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🔐 Authentication Rules
+
+**Password Requirements:**
+- Minimum **6 characters**
+- Must contain **at least 1 uppercase letter**
+- Must contain **at least 1 lowercase letter**
+
+Includes:
+- Email & Password Login
+- Google OAuth Login
+- Redirects back to protected route after login
+
+---
+
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+|-----------|---------|
+| React.js | UI Framework |
+| React Router DOM | Routing |
+| Firebase | Authentication |
+| Tailwind CSS | Styling |
+| DaisyUI | Pre-built UI Components |
+
+Install packages:
+```bash
+
+
+## github
+https://github.com/kanon8888/a-game-library

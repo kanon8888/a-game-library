@@ -13,6 +13,7 @@ import AuthLayout from "../layout/AuthLayout";
 import PrivateRoute from "../components/PrivateRoute";
 import Profile from "../pages/Profile";
 import NotFound from "../pages/NotFound"; 
+import Loading from "../pages/Loading";
 
 const router = createBrowserRouter([
     {
@@ -28,11 +29,13 @@ const router = createBrowserRouter([
                     </>
                 ),
                 loader: () => fetch("/game.json").then(res => res.json()),
+                hydrateFallbackElement: <Loading></Loading>,
             },
             {
                 path: "/games",
                 element: <MoreGame />,
                 loader: () => fetch("/games.json").then(res => res.json()),
+                hydrateFallbackElement: <Loading></Loading>,
             },
             {
                 path: "/game/:id",
